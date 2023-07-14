@@ -3,16 +3,6 @@ import { useEffect, useState } from "react";
 function QuoteComponent() {
   const [quote, setQuote] = useState({});
 
-  useEffect(() => {
-    console.log("some text, some more text");
-    fetch("https://christinamifsud-quote-server.glitch.me/quotes/random")
-      .then((response) => response.json())
-      .then((data) => {
-        setQuote(data);
-      })
-      .catch((error) => console.error(error));
-  }, []);
-
   const changeQuote = () => {
     fetch("https://christinamifsud-quote-server.glitch.me/quotes/random")
       .then((response) => response.json())
@@ -21,6 +11,8 @@ function QuoteComponent() {
       })
       .catch((error) => console.error(error));
   };
+
+  useEffect(changeQuote, []);
 
   return (
     <div className="quoteComponent">
